@@ -47,6 +47,8 @@ public class SpringAiBasicApplication implements CommandLineRunner {
         log.info("인식된 문자열");
         log.info(result1);
 
+
+
         log.info("자바 프로그래밍 종료!!");
 
         String result = "OCR로 추출된 기사 내용";
@@ -71,6 +73,12 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         Collections.sort(sortResult, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
 
+        NlpDTO plainDTO = nlpService.getPlainText(result1);
+
+        log.info("형태소별 품사 분석 결과 : " + plainDTO.getResult());
+
+        Map<String, Integer> rMap1 = new HashMap<>();
+
 
         log.info("중복 제거 수행 전 단어 수 : " + nouns.size());
         log.info("중복 제거 수행 후 단어 수 : " + distinct.size());
@@ -78,12 +86,12 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         for (String s : distinct) {
             int count = Collections.frequency(nouns, s);
-            rMap.put(s, count);
+            rMap1.put(s, count);
 
             log.info(s + " : " + count);
         }
-
-        Collections.sort(sortResult, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+        List<Map.Entry<String, Integer>> sortResult1 = new LinkedList<>(rMap1.entrySet());
+        Collections.sort(sortResult1, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
 
         log.info("가장 많이 사용된 단어는? : " + sortResult);
 
