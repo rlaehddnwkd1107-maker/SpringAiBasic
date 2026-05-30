@@ -53,7 +53,7 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         String result = "OCR로 추출된 기사 내용";
 
-        NlpDTO nlpDTO = nlpService.getNouns(result);
+        NlpDTO nlpDTO = nlpService.getNouns(result1);
 
 
         List<String> nouns = nlpDTO.getNouns();
@@ -69,9 +69,7 @@ public class SpringAiBasicApplication implements CommandLineRunner {
             log.info(s, count);
         }
 
-        List<Map.Entry<String, Integer>> sortResult = new LinkedList<>(rMap.entrySet());
 
-        Collections.sort(sortResult, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
 
         NlpDTO plainDTO = nlpService.getPlainText(result1);
 
@@ -90,8 +88,8 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
             log.info(s + " : " + count);
         }
-        List<Map.Entry<String, Integer>> sortResult1 = new LinkedList<>(rMap1.entrySet());
-        Collections.sort(sortResult1, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+        List<Map.Entry<String, Integer>> sortResult = new LinkedList<>(rMap.entrySet());
+        Collections.sort(sortResult, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
 
         log.info("가장 많이 사용된 단어는? : " + sortResult);
 
