@@ -26,6 +26,7 @@ public class SpringAiBasicApplication implements CommandLineRunner {
         SpringApplication.run(SpringAiBasicApplication.class, args);
 
     }
+//비공개로 커밋되서 다시 커밋할려고 추가하는 주석 ㅎㅎㅎㅎㅎ
 
     @Override
     public void run(String... args) throws Exception {
@@ -42,18 +43,17 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         OcrDTO rDTO = ocrService.getReadforImageText(pDTO);
 
-        String result1 = rDTO.getResult();
+        String result = rDTO.getResult();
 
         log.info("인식된 문자열");
-        log.info(result1);
+        log.info(result);
 
 
 
         log.info("자바 프로그래밍 종료!!");
 
-        String result = "OCR로 추출된 기사 내용";
 
-        NlpDTO nlpDTO = nlpService.getNouns(result1);
+        NlpDTO nlpDTO = nlpService.getNouns(result);
 
 
         List<String> nouns = nlpDTO.getNouns();
@@ -71,11 +71,11 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
 
 
-        NlpDTO plainDTO = nlpService.getPlainText(result1);
+        NlpDTO plainDTO = nlpService.getPlainText(result);
 
         log.info("형태소별 품사 분석 결과 : " + plainDTO.getResult());
 
-        Map<String, Integer> rMap1 = new HashMap<>();
+        rMap = new HashMap<>();
 
 
         log.info("중복 제거 수행 전 단어 수 : " + nouns.size());
@@ -84,7 +84,7 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         for (String s : distinct) {
             int count = Collections.frequency(nouns, s);
-            rMap1.put(s, count);
+            rMap.put(s, count);
 
             log.info(s + " : " + count);
         }
