@@ -35,7 +35,6 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
         String filePath = "image";
         String fileName = "sample01.jpg";
-
         OcrDTO pDTO = new OcrDTO();
 
         pDTO.setFilePath(filePath);
@@ -68,6 +67,7 @@ public class SpringAiBasicApplication implements CommandLineRunner {
 
             log.info(s, count);
         }
+
 
 
 
