@@ -10,9 +10,7 @@ public interface IStudentMapper {
 
     void insertStudent(StudentDTO pDTO) throws Exception;
 
-
     List<StudentDTO> getStudentList() throws Exception;
-
 
     StudentDTO getStudent(StudentDTO pDTO) throws Exception;
 
